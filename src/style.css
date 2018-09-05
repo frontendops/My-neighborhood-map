@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+}
+
+.main-site {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    font-family: sans-serif;
+    height: 100vh;
+
+}
+
+.heading {
+    background: #90C0A2;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    font-size: 1.5em;
+}
+
+/*
+* button styles
+*/
+
+
+#roundButton {
+  background-color: #C090AE;
+  margin-bottom: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 10px solid #866479;
+  outline: none;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  position: absolute;
+}
+
+#roundButton:hover {
+  background-color: #C090AE;
+  cursor: pointer;
+  border-color: #5D4654;
+  transform: scale(1.2, 1.2);
+}
+
+#roundButton:active {
+  border-color: #003557;
+  background-color: #FFF;
+}
+
+
+/*
+* styles for the menu
+*/
+
+#flyoutMenu {
+  width: 45vw;
+  height: 100vh;
+  background-color: #567361;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform .3s
+              cubic-bezier(0, .52, 0, 1);
+  overflow: scroll;
+  z-index: 1000;
+  font-family: sans-serif;
+}
+
+#flyoutMenu.hide {
+  transform: translate3d(-100vw, 0, 0);
+}
+
+#flyoutMenu.show {
+  transform: translate3d(0vw, 0, 0);
+  overflow: hidden;
+}
+
+#flyoutMenu h2 a {
+  color: #333;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+#flyoutMenu h2 a:hover {
+  text-decoration: underline;
+}
