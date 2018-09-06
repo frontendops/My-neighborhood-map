@@ -55,7 +55,7 @@ h1 {
 
 
 /*
-* styles for the menu
+* sliding in the menu
 */
 
 #flyoutMenu {
@@ -89,4 +89,33 @@ h1 {
 
 #flyoutMenu h2 a:hover {
   text-decoration: underline;
+}
+
+
+/*
+* styles for the menu
+*/
+
+.menu-heading {
+    margin: 0 auto;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.search {
+    
+}
+
+.search-result {
+    border-bottom: 2px solid black;
+    padding: 7px;
+    text-align: center;
+}
+
+.search-result:hover {
+    color: red;
+    transition: .6s;
+    cursor: pointer;
 }
