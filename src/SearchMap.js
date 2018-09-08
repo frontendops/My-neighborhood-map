@@ -11,10 +11,14 @@ class SearchMap extends Component {
 
     return (
       <div id="flyoutMenu"
-           onMouseDown={this.props.handleMouseDown}
            className={visibility}>
 
         <h1 className="menu-heading">Search The Map</h1>
+
+        <button onMouseDown={this.props.handleMouseDown}
+         type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
 
         <input className="search" type="text"></input>
 
