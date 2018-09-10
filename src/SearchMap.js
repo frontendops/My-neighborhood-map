@@ -16,14 +16,16 @@ class SearchMap extends Component {
         <h1 className="menu-heading">Search The Map</h1>
 
         <button onMouseDown={this.props.handleMouseDown}
-         type="button" class="close" aria-label="Close">
+         type="button" className="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
 
         <input className="search" type="text"></input>
 
+
+
         <div className="search-result">
-            <p>City of Taylors</p>
+            <p></p>
         </div>
 
         <div className="search-result">
