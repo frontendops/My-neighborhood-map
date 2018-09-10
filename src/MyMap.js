@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import {data} from './data.js'
+
 
 import './style.css';
 
@@ -53,31 +53,19 @@ class MyMap extends Component {
         <Marker onClick={this.onMarkerClick}
             name={'City of Taylors'} />
 
-            <Marker
-                title={'The marker`s title will appear as a tooltip.'}
-                name={'my job'}
-                position={{lat: 34.883160, lng: -82.355426}} />
+            {this.state.markers.map(marker =>
+                <Marker
+                    title={'The marker`s title will appear as a tooltip.'}
+                    name={'my job'}
+                    position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
-            <Marker
-                title={'The marker`s title will appear as a tooltip.'}
-                name={'My church'}
-                position={{lat: `${this.state.markers.lat}`, lng: -82.340463}} />
-
-            <Marker
-                title={'Asian shop where i get my noodles from'}
-                name={'Asian Shop'}
-                position={{lat: 34.917779, lng: -82.318189}} />
-
-            <Marker
-                title={'The marker`s title will appear as a tooltip.'}
-                name={'Shopping center'}
-                position={{lat: 34.937425, lng: -82.278508}} />
+            )}
 
 
-            <Marker
-                title={'The marker`s title will appear as a tooltip.'}
-                name={'Soccer Field'}
-                position={{lat: 34.883428, lng: -82.306161}} />
+
+
+
+
 
 
         <InfoWindow onClose={this.onInfoWindowClose}>
