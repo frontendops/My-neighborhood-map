@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
+import SearchMap from './SearchMap.js';
 
 import './style.css';
 
@@ -36,12 +36,16 @@ class MyMap extends Component {
                 }
             ]
         }
+
     };
 
 
   render() {
 
     return (
+        <div>
+        <SearchMap markers={this.state.markers}/>
+
        <Map google={this.props.google}
         zoom={13}
         initialCenter={{
@@ -56,22 +60,18 @@ class MyMap extends Component {
             {this.state.markers.map(marker =>
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
-                    name={'my job'}
+                    name={`${marker.name}`}
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
             )}
-
-
-
-
-
-
 
 
         <InfoWindow onClose={this.onInfoWindowClose}>
 
         </InfoWindow>
       </Map>
+
+      </div>
 
     );
   }

@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import "./style.css";
 
+
 class SearchMap extends Component {
+
+
+
   render() {
     var visibility = "hide";
 
     if (this.props.menuVisibility) {
       visibility = "show";
     }
+
 
     return (
       <div id="flyoutMenu"
@@ -22,19 +27,12 @@ class SearchMap extends Component {
 
         <input className="search" type="text"></input>
 
+        {this.props.markers.map( marker =>
+            <div className="search-result">
+                <p>{marker.name}</p>
+            </div>
+        )}
 
-
-        <div className="search-result">
-            <p></p>
-        </div>
-
-        <div className="search-result">
-            <p>My Job</p>
-        </div>
-
-        <div className="search-result">
-            <p>Shopping Center</p>
-        </div>
 
       </div>
     );
