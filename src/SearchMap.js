@@ -28,7 +28,7 @@ class SearchMap extends Component {
         <input className="search" type="text"></input>
 
         {this.props.markers.map( marker =>
-            <div className="search-result">
+            <div key={marker.id} className="search-result">
                 <p>{marker.name}</p>
             </div>
         )}
