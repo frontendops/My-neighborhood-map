@@ -67,7 +67,15 @@ class App extends Component {
                   'name': "Taylors Library",
                   'lat': 34.920183,
                   'long': -82.308262
-              }
+              },
+              {
+                  'id': 9,
+                  'type': "Public Center",
+                  'name': "Greenville Airport",
+                  'lat': 34.895945,
+                  'long': -82.217234
+              },
+
           ],
         visible: false
       };
