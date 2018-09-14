@@ -11,7 +11,8 @@ class App extends Component {
       super(props, context);
 
       this.state = {
-          'markers': [
+          'markers': [],
+          defaultMarkers: [
               {
                   'id': 1,
                   'type': "Store",
@@ -77,11 +78,19 @@ class App extends Component {
               },
 
           ],
-        visible: false
+        visible: false,
+
       };
 
       this.toggleMenu = this.toggleMenu.bind(this);
       this.handleMouseDown = this.handleMouseDown.bind(this);
+      this.renderMarkers = this.renderMarkers.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            markers: [...this.state.defaultMarkers]
+        })
     }
 
     handleMouseDown(e) {
@@ -98,6 +107,11 @@ class App extends Component {
       });
     }
 
+    renderMarkers(markers) {
+        this.setState( () => ({
+            markers: [...markers]
+        }))
+    }
 
   render() {
     return (
@@ -117,12 +131,10 @@ class App extends Component {
 
         <SearchMap handleMouseDown={this.handleMouseDown}
          menuVisibility={this.state.visible}
-         markers={this.state.markers}
+         markers={this.state.defaultMarkers}
+         renderMarkers={this.renderMarkers}
+
          />
-
-
-
-
 
 
 

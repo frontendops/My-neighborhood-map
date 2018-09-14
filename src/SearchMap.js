@@ -5,11 +5,21 @@ import "./style.css";
 class SearchMap extends Component {
     state = {
         query: '',
-        searchedMarkers: []
+        searchedMarkers: this.props.markers
     }
 
     updateInput = (query) => {
         this.setState({ query })
+
+    }
+
+    filterMarkers = (text) => {
+        let filteredMarkers = this.props.markers.filter(marker =>
+        marker.name.toLowerCase().includes(text.toLowerCase()));
+        this.setState({
+            searchedMarkers: filteredMarkers
+        })
+        this.props.renderMarkers(filteredMarkers)
 
     }
 
@@ -21,12 +31,7 @@ class SearchMap extends Component {
       visibility = "show";
     }
 
-    let filteredMarkers = this.props.markers.filter(marker => {
-        return marker.name.toLowerCase().indexOf(this.state.query) !== -1;
-    }
-    );
 
-    
 
     return (
       <div id="flyoutMenu"
@@ -41,10 +46,13 @@ class SearchMap extends Component {
 
         <input className="search" type="text" placeholder={"Search for any location"}
         value={this.state.query}
-        onChange={(e) => this.updateInput(e.target.value)}
+        onChange={(e) => {this.updateInput(e.target.value)
+            this.filterMarkers(e.target.value)
+        }
+        }
         ></input>
 
-        {filteredMarkers.map( marker =>
+        {this.state.searchedMarkers.map( marker =>
             <div key={marker.id} className="search-result">
                 <p>{marker.name}</p>
             </div>
