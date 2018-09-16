@@ -7,7 +7,8 @@ import './style.css';
 class MyMap extends Component {
     state = {
         showingInfoWindow: false,
-        activeMarker: {}
+        activeMarker: {},
+        selectedPlace: {}
     }
 
     onMarkerClick = (props, marker, e) =>
@@ -18,8 +19,8 @@ class MyMap extends Component {
        });
 
        closeWindow = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
+        if (this.state.showingInfoWindow) {
+          this.setState({
         showingInfoWindow: false,
         activeMarker: null
       })
@@ -51,9 +52,9 @@ class MyMap extends Component {
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
               onClose={this.closeWindow}
-              >
+        >
                 <div>
-                  <p>Voila</p>
+                  <p>{this.state.selectedPlace.name}</p>
                 </div>
         </InfoWindow>
 
@@ -61,7 +62,8 @@ class MyMap extends Component {
 
             {this.props.markers.map(marker =>
                 <Marker key={marker.id}
-                    title={'The marker`s title will appear as a tooltip.'}
+                    onClick={this.onMarkerClick}
+
                     name={`${marker.name}`}
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
