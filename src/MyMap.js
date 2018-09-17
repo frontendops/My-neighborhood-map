@@ -29,6 +29,8 @@ class MyMap extends Component {
                 <Marker key={marker.id}
                     onClick={this.props.onMarkerClick}
                     name={`${marker.name}`}
+                    type={`${marker.type}`}
+                    
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
             )}

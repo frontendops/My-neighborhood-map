@@ -79,7 +79,6 @@ class App extends Component {
 
           ],
         visible: false,
-        activeMarker: {},
         selectedPlace: {}
 
       };
@@ -88,7 +87,6 @@ class App extends Component {
       this.handleMouseDown = this.handleMouseDown.bind(this);
       this.renderMarkers = this.renderMarkers.bind(this);
       this.onMarkerClick = this.onMarkerClick.bind(this);
-      this.closeWindow = this.closeWindow.bind(this);
     }
 
     componentDidMount() {
@@ -117,27 +115,16 @@ class App extends Component {
         }))
     }
 
-
-
-    onMarkerClick = (props, marker, e) =>{
+    onMarkerClick = (e) =>{
        this.setState({
-         selectedPlace: props,
-         activeMarker: marker,props,
+         selectedPlace: e
        });
     }
 
 
-       closeWindow = (props) => {
-        if (this.state.showingInfoWindow) {
-          this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
-    }
-  };
-
   render() {
     return (
+        // rendering the full app
       <div className="App">
 
         <div className="main-site">
@@ -146,27 +133,26 @@ class App extends Component {
                 <h1>My Neighboorhood Map</h1>
 
               </div>
-
+        {/*passing state to the MyMap component */}
               <MyMap markers={this.state.markers}
-              marker={this.state.activeMarker}
-              showInfoWindow={this.state.showingInfoWindow}
-              close={this.closeWindow}
               onMarkerClick={this.onMarkerClick}
               />
 
               <MenuButton handleMouseDown={this.handleMouseDown}/>
-
+        {/* this is the infow window on the bottom right uses selectedPlace to render */}
               <div className="marker-info" >
                 <h1>{this.state.selectedPlace.name}</h1>
-                <h2></h2>
+                <h3>{this.state.selectedPlace.type}</h3>
               </div>
 
         </div>
-
+        {/* passing state to SearchMap component */}
         <SearchMap handleMouseDown={this.handleMouseDown}
          menuVisibility={this.state.visible}
          markers={this.state.defaultMarkers}
          renderMarkers={this.renderMarkers}
+         onMarkerClick={this.onMarkerClick}
+         selected={this.state.selectedPlace}
 
          />
 

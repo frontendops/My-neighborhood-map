@@ -5,7 +5,8 @@ import "./style.css";
 class SearchMap extends Component {
     state = {
         query: '',
-        searchedMarkers: this.props.markers
+        searchedMarkers: this.props.markers,
+        select: this.props.selected
     }
 
     updateInput = (query) => {
@@ -20,7 +21,6 @@ class SearchMap extends Component {
             searchedMarkers: filteredMarkers
         })
         this.props.renderMarkers(filteredMarkers)
-
     }
 
 
@@ -30,8 +30,6 @@ class SearchMap extends Component {
     if (this.props.menuVisibility) {
       visibility = "show";
     }
-
-
 
     return (
       <div id="flyoutMenu"
@@ -53,7 +51,11 @@ class SearchMap extends Component {
         ></input>
 
         {this.state.searchedMarkers.map( marker =>
-            <div key={marker.id} className="search-result">
+            <div key={marker.id} className="search-result"
+            onClick={() => this.props.onMarkerClick()}
+            name={`${marker.name}`}
+            type={`${marker.type}`}
+            >
                 <p>{marker.name}</p>
             </div>
         )}
