@@ -79,12 +79,16 @@ class App extends Component {
 
           ],
         visible: false,
+        activeMarker: {},
+        selectedPlace: {}
 
       };
 
       this.toggleMenu = this.toggleMenu.bind(this);
       this.handleMouseDown = this.handleMouseDown.bind(this);
       this.renderMarkers = this.renderMarkers.bind(this);
+      this.onMarkerClick = this.onMarkerClick.bind(this);
+      this.closeWindow = this.closeWindow.bind(this);
     }
 
     componentDidMount() {
@@ -113,6 +117,25 @@ class App extends Component {
         }))
     }
 
+
+
+    onMarkerClick = (props, marker, e) =>{
+       this.setState({
+         selectedPlace: props,
+         activeMarker: marker,props,
+       });
+    }
+
+
+       closeWindow = (props) => {
+        if (this.state.showingInfoWindow) {
+          this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -123,9 +146,20 @@ class App extends Component {
                 <h1>My Neighboorhood Map</h1>
 
               </div>
-              <MyMap markers={this.state.markers} />
+
+              <MyMap markers={this.state.markers}
+              marker={this.state.activeMarker}
+              showInfoWindow={this.state.showingInfoWindow}
+              close={this.closeWindow}
+              onMarkerClick={this.onMarkerClick}
+              />
 
               <MenuButton handleMouseDown={this.handleMouseDown}/>
+
+              <div className="marker-info" >
+                <h1>{this.state.selectedPlace.name}</h1>
+                <h2></h2>
+              </div>
 
         </div>
 

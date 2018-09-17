@@ -120,3 +120,24 @@ h1 {
     transition: .6s;
     cursor: pointer;
 }
+
+/*
+* styles for marker info
+*/
+
+.marker-info {
+    background-color: white;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.marker-info h1 {
+    color: black;
+}
+
+.marker-info p {
+    color: black;
+}
