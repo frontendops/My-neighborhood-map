@@ -115,10 +115,21 @@ class App extends Component {
         }))
     }
 
-    onMarkerClick = (e) =>{
+    onMarkerClick = (e) => {
+        let selectedPlace = this.state.markers.find(marker =>
+        marker.name === e.name)
        this.setState({
-         selectedPlace: e
+         selectedPlace
        });
+    }
+
+    onSelectPlace = (e) => {
+        let selectedPlace = this.state.markers.find(marker =>
+            marker.name === e.target.textContent
+        );
+        this.setState({
+            selectedPlace
+        })
     }
 
 
@@ -153,6 +164,7 @@ class App extends Component {
          renderMarkers={this.renderMarkers}
          onMarkerClick={this.onMarkerClick}
          selected={this.state.selectedPlace}
+         onSelectPlace={this.onSelectPlace}
 
          />
 

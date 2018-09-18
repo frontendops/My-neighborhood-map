@@ -52,9 +52,7 @@ class SearchMap extends Component {
 
         {this.state.searchedMarkers.map( marker =>
             <div key={marker.id} className="search-result"
-            onClick={() => this.props.onMarkerClick()}
-            name={`${marker.name}`}
-            type={`${marker.type}`}
+            onClick={this.props.onSelectPlace}
             >
                 <p>{marker.name}</p>
             </div>

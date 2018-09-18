@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import {Map, InfoWindow, Marker, GoogleApiWrapper,} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper,} from 'google-maps-react';
 
 
 import './style.css';
 
 class MyMap extends Component {
-
-
 
 
   render() {
@@ -30,7 +28,10 @@ class MyMap extends Component {
                     onClick={this.props.onMarkerClick}
                     name={`${marker.name}`}
                     type={`${marker.type}`}
-                    
+                    icon= {{
+                        url: 'http://mt.google.com/vt/icon?psize=27&font=fonts/Roboto-Bold.ttf&color=ff135C13&name=icons/spotlight/spotlight-waypoint-a.png&ax=43&ay=50&text=•&scale=1'
+                    }}
+
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
             )}
