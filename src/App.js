@@ -79,7 +79,9 @@ class App extends Component {
 
           ],
         visible: false,
-        selectedPlace: {}
+        selectedPlace: {},
+        data: {},
+        isLoaded: false
 
       };
 
@@ -89,11 +91,19 @@ class App extends Component {
       this.onMarkerClick = this.onMarkerClick.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({
-            markers: [...this.state.defaultMarkers]
+    componentDidMount () {
+        fetch('https://api.foursquare.com/v2/venues/explore?client_id=EMSPZJIP3VLPKBSRBMBOMMDNMFV3VV04LH4QCDWICUNX5VJG&client_secret=4Q4MUBH5OKTC1TSLUXVX4ZZKF5KOS2HHUMJSJLFVEDOSXLBB&v=20180323&limit=1&ll=40.7243,-74.0018&query=pizza')
+        .then( (response) => response.json())
+        .then(json => {
+            this.setState({
+                markers: [...this.state.defaultMarkers],
+                isLoaded: true,
+                data: json
+            })
         })
     }
+
+
 
     handleMouseDown(e) {
     this.toggleMenu();
@@ -134,6 +144,14 @@ class App extends Component {
 
 
   render() {
+      const {isLoaded, data } = this.state;
+
+      if (!isLoaded) {
+          console.log('loading');
+      } else {
+          console.log('ready');
+      }
+
     return (
         // rendering the full app
       <div className="App">
@@ -147,6 +165,7 @@ class App extends Component {
         {/*passing state to the MyMap component */}
               <MyMap markers={this.state.markers}
               onMarkerClick={this.onMarkerClick}
+              selectedPlace={this.state.selectedPlace}
               />
 
               <MenuButton handleMouseDown={this.handleMouseDown}/>
@@ -154,6 +173,7 @@ class App extends Component {
               <div className="marker-info" >
                 <h1>{this.state.selectedPlace.name}</h1>
                 <h3>{this.state.selectedPlace.type}</h3>
+                <h4>{}</h4>
               </div>
 
         </div>
