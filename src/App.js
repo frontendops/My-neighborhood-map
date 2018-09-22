@@ -136,7 +136,7 @@ class App extends Component {
        this.setState({
          selectedPlace
        })
-    this.sayHi();
+    this.fetchData();
     }
 
     onSelectPlace = (e) => {
@@ -146,6 +146,8 @@ class App extends Component {
         this.setState({
             selectedPlace
         })
+        this.fetchData();
+        this.renderMarkerInfo();
     }
 
     renderMarkerInfo = () => {
@@ -160,7 +162,7 @@ class App extends Component {
     }
 }
 
-sayHi = () => {
+fetchData = () => {
     fetch(`https://api.foursquare.com/v2/venues/${this.state.selectedPlace.venue}?client_id=EMSPZJIP3VLPKBSRBMBOMMDNMFV3VV04LH4QCDWICUNX5VJG&client_secret=4Q4MUBH5OKTC1TSLUXVX4ZZKF5KOS2HHUMJSJLFVEDOSXLBB&v=20130815&ll=34.883160,-82.355426&limit=1`)
     .then( (response) => response.json())
     .then(json => {
@@ -183,9 +185,13 @@ sayHi = () => {
         // rendering the full app
       <div className="App">
 
-        <div className="main-site">
+        <div className="main-site"
+        role="application"
+        >
 
-              <div className="heading">
+              <div className="heading"
+              role="heading"
+              >
                 <h1>My Neighboorhood Map</h1>
 
               </div>
@@ -195,9 +201,9 @@ sayHi = () => {
               selectedPlace={this.state.selectedPlace}
               />
 
-              <MenuButton handleMouseDown={this.handleMouseDown}/>
+              <MenuButton handleMouseDown={this.handleMouseDown} aria-label="Open" />
         {/* this is the infow window on the bottom right uses selectedPlace to render */}
-              <div className="marker-info" >
+              <div className="marker-info" role="article" >
                 <h1>{this.state.selectedPlace.name}</h1>
                 <h3>{this.state.selectedPlace.type}</h3>
                 { this.renderMarkerInfo() }
