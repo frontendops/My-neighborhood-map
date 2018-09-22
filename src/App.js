@@ -18,63 +18,72 @@ class App extends Component {
                   'type': "Store",
                   'name': "Walmart",
                   'lat': 34.883160,
-                  'long': -82.355426
+                  'long': -82.355426,
+                  'venue': "509bf15ee4b0397ad759813f"
               },
               {
                   'id': 2,
                   'type': "Public Center",
                   'name': "Grace Church",
                   'lat': 34.898554,
-                  'long': -82.340463
+                  'long': -82.340463,
+                  'venue': "5b9addfa60255e002c6464ce"
               },
               {
                   'id': 3,
                   'type': "Store",
                   'name': "Vietnamese Shop",
                   'lat': 34.917779,
-                  'long': -82.318189
+                  'long': -82.318189,
+                  'venue': "4bfac2291134b7133c820fc9"
               },
               {
                   'id': 4,
                   'type': "Store",
                   'name': "Shopping center",
                   'lat': 34.937425,
-                  'long': -82.278508
+                  'long': -82.278508,
+                  'venue': "4f259419e4b063d401b1c532"
               },
               {
                   'id': 5,
                   'type': "Park",
                   'name': "Soccer Field",
                   'lat': 34.883428,
-                  'long': -82.306161
+                  'long': -82.306161,
+                  'venue': "4cb1faaadb32f04d4486cc4d"
               },
               {
                   'id': 6,
                   'type': "Park",
                   'name': "Paris Mountain",
                   'lat': 34.941150,
-                  'long': -82.391217
+                  'long': -82.391217,
+                  'venue': "4b7ed559f964a520e40230e3"
               },
               {
                   'id': 7,
                   'type': "Park",
                   'name': "Falls Park",
                   'lat': 34.844564,
-                  'long': -82.401244
+                  'long': -82.401244,
+                  'venue': "4b625ff4f964a520eb442ae3"
               },
               {
                   'id': 8,
                   'type': "Public Center",
                   'name': "Taylors Library",
                   'lat': 34.920183,
-                  'long': -82.308262
+                  'long': -82.308262,
+                  'venue': "4b5e2f70f964a5206d8229e3"
               },
               {
                   'id': 9,
                   'type': "Public Center",
                   'name': "Greenville Airport",
                   'lat': 34.895945,
-                  'long': -82.217234
+                  'long': -82.217234,
+                  'venue': "4b4c61c2f964a520fbb126e3"
               },
 
           ],
@@ -89,18 +98,13 @@ class App extends Component {
       this.handleMouseDown = this.handleMouseDown.bind(this);
       this.renderMarkers = this.renderMarkers.bind(this);
       this.onMarkerClick = this.onMarkerClick.bind(this);
+      this.renderMarkerInfo = this.renderMarkerInfo.bind(this);
     }
 
     componentDidMount () {
-        fetch('https://api.foursquare.com/v2/venues/explore?client_id=EMSPZJIP3VLPKBSRBMBOMMDNMFV3VV04LH4QCDWICUNX5VJG&client_secret=4Q4MUBH5OKTC1TSLUXVX4ZZKF5KOS2HHUMJSJLFVEDOSXLBB&v=20180323&limit=1&ll=40.7243,-74.0018&query=pizza')
-        .then( (response) => response.json())
-        .then(json => {
             this.setState({
-                markers: [...this.state.defaultMarkers],
-                isLoaded: true,
-                data: json
+                markers: [...this.state.defaultMarkers]
             })
-        })
     }
 
 
@@ -126,11 +130,13 @@ class App extends Component {
     }
 
     onMarkerClick = (e) => {
+        console.log('one');
         let selectedPlace = this.state.markers.find(marker =>
         marker.name === e.name)
        this.setState({
          selectedPlace
-       });
+       })
+    this.sayHi();
     }
 
     onSelectPlace = (e) => {
@@ -142,9 +148,30 @@ class App extends Component {
         })
     }
 
+    renderMarkerInfo = () => {
+        if(this.state.isLoaded) {
+            if (this.state.data.response.name) {
+          return (<h4>{this.state.data.response.venue}</h4>);
+      } else {
+          return (<h4>quota has been exceeded</h4>);
+      }
+    } else {
+        return (<h4>Waiting to load info</h4>);
+    }
+}
 
+sayHi = () => {
+    fetch(`https://api.foursquare.com/v2/venues/${this.state.selectedPlace.venue}?client_id=EMSPZJIP3VLPKBSRBMBOMMDNMFV3VV04LH4QCDWICUNX5VJG&client_secret=4Q4MUBH5OKTC1TSLUXVX4ZZKF5KOS2HHUMJSJLFVEDOSXLBB&v=20130815&ll=34.883160,-82.355426&limit=1`)
+    .then( (response) => response.json())
+    .then(json => {
+        this.setState({
+            isLoaded: true,
+            data: json
+        })
+    })
+}
   render() {
-      const {isLoaded, data } = this.state;
+      const {isLoaded } = this.state;
 
       if (!isLoaded) {
           console.log('loading');
@@ -173,7 +200,7 @@ class App extends Component {
               <div className="marker-info" >
                 <h1>{this.state.selectedPlace.name}</h1>
                 <h3>{this.state.selectedPlace.type}</h3>
-                <h4>{}</h4>
+                { this.renderMarkerInfo() }
               </div>
 
         </div>
