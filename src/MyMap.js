@@ -22,7 +22,7 @@ class MyMap extends Component {
         >
 
 
-
+        {/* each marker that is searched for is rendered here  */}
             {this.props.markers.map(marker =>
                 <Marker key={marker.id}
                     onClick={this.props.onMarkerClick}

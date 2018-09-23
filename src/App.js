@@ -108,7 +108,7 @@ class App extends Component {
     }
 
 
-
+//handles the click on the purple button
     handleMouseDown(e) {
     this.toggleMenu();
 
@@ -116,21 +116,21 @@ class App extends Component {
     e.stopPropagation();
   }
 
-
+//shows the search menu
     toggleMenu() {
       this.setState({
           visible: !this.state.visible
       });
     }
 
+
     renderMarkers(markers) {
         this.setState( () => ({
             markers: [...markers]
         }))
     }
-
+//when a marker is clicked it fetches the data from foursquare api and displays
     onMarkerClick = (e) => {
-        console.log('one');
         let selectedPlace = this.state.markers.find(marker =>
         marker.name === e.name)
        this.setState({
@@ -139,6 +139,7 @@ class App extends Component {
     this.fetchData();
     }
 
+//when a list item is clicked it fetches data
     onSelectPlace = (e) => {
         let selectedPlace = this.state.markers.find(marker =>
             marker.name === e.target.textContent
@@ -150,6 +151,7 @@ class App extends Component {
         this.renderMarkerInfo();
     }
 
+// handles any fetched data error
     renderMarkerInfo = () => {
         if(this.state.isLoaded) {
             if (this.state.data.response.name) {
@@ -162,6 +164,7 @@ class App extends Component {
     }
 }
 
+// each time an item is clicked on it passes the venue id into the fetch url and gets venue info from foursquare api
 fetchData = () => {
     fetch(`https://api.foursquare.com/v2/venues/${this.state.selectedPlace.venue}?client_id=EMSPZJIP3VLPKBSRBMBOMMDNMFV3VV04LH4QCDWICUNX5VJG&client_secret=4Q4MUBH5OKTC1TSLUXVX4ZZKF5KOS2HHUMJSJLFVEDOSXLBB&v=20130815&ll=34.883160,-82.355426&limit=1`)
     .then( (response) => response.json())
