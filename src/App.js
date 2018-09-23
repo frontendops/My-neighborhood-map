@@ -173,14 +173,6 @@ fetchData = () => {
     })
 }
   render() {
-      const {isLoaded } = this.state;
-
-      if (!isLoaded) {
-          console.log('loading');
-      } else {
-          console.log('ready');
-      }
-
     return (
         // rendering the full app
       <div className="App">

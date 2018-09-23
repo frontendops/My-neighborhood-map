@@ -33,6 +33,7 @@ class SearchMap extends Component {
 
     return (
       <div id="flyoutMenu"
+            role="menu"
            className={visibility}>
 
         <h1 className="menu-heading">Search The Map</h1>
@@ -42,12 +43,11 @@ class SearchMap extends Component {
           <span aria-hidden="true">&times;</span>
         </button>
 
-        <input className="search" type="text" placeholder={"Search for any location"}
+        <input className="search" type="text" aria-label="search-text" placeholder={"Search for any location"}
         value={this.state.query}
         onChange={(e) => {this.updateInput(e.target.value)
             this.filterMarkers(e.target.value)
-        }
-        }
+        }}
         ></input>
 
         {this.state.searchedMarkers.map( marker =>

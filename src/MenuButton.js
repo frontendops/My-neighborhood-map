@@ -4,7 +4,7 @@ import './style.css';
 class MenuButton extends Component {
   render() {
     return (
-      <button id="roundButton" role="button"
+      <button id="roundButton"
               onMouseDown={this.props.handleMouseDown}></button>
     );
   }

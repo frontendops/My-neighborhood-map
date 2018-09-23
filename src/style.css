@@ -31,7 +31,7 @@ h1 {
 
 #roundButton {
   background-color: #C090AE;
-  margin-bottom: 20px;
+  margin: 5px;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -92,6 +92,16 @@ h1 {
   text-decoration: underline;
 }
 
+#flyoutMenu input {
+
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 15px;
+
+}
+
 
 /*
 * styles for the menu
@@ -105,13 +115,24 @@ h1 {
     padding-bottom: 20px;
 }
 
-.search {
+.close {
+    background: grey;
+    height: 40px;
+    width: 40px;
+}
 
+.close:hover {
+    cursor: pointer;
+    background-color: #595959;
+}
+
+.search {
+    margin: 0 auto;
 }
 
 .search-result {
     border-bottom: 2px solid black;
-    padding: 7px;
+    padding: 10px 0px;
     text-align: center;
 }
 
@@ -127,15 +148,19 @@ h1 {
 
 .marker-info {
     background-color: white;
-    height: 200px;
+    height: 175px;
     width: 200px;
     position: absolute;
     bottom: 0;
     right: 0;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
 .marker-info h1 {
     color: black;
+    font-family: helvetica;
 }
 
 .marker-info p {
