@@ -92,6 +92,7 @@ class App extends Component {
         data: {},
         isLoaded: false
 
+
       };
 
       this.toggleMenu = this.toggleMenu.bind(this);
@@ -175,7 +176,8 @@ fetchData = () => {
         })
     })
 }
-  render() {
+
+ render() {
     return (
         // rendering the full app
       <div className="App">

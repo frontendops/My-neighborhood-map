@@ -28,9 +28,7 @@ class MyMap extends Component {
                     onClick={this.props.onMarkerClick}
                     name={`${marker.name}`}
                     type={`${marker.type}`}
-                    icon= {{
-                        url: 'http://mt.google.com/vt/icon?psize=27&font=fonts/Roboto-Bold.ttf&color=ff135C13&name=icons/spotlight/spotlight-waypoint-a.png&ax=43&ay=50&text=•&scale=1'
-                    }}
+                    animation= { this.props.selectedPlace ? (marker.name === this.props.selectedPlace.name ? '1' : '0') : '0'}
 
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
