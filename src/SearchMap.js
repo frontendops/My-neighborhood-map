@@ -52,7 +52,7 @@ class SearchMap extends Component {
 
         {this.state.searchedMarkers.map( marker =>
             <div key={marker.id} className="search-result"
-            tabindex= "1"
+            tabIndex= "1"
             onClick={this.props.onSelectPlace}
             >
                 <p>{marker.name}</p>

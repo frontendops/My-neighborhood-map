@@ -168,13 +168,21 @@ class App extends Component {
 // each time an item is clicked on it passes the venue id into the fetch url and gets venue info from foursquare api
 fetchData = () => {
     fetch(`https://api.foursquare.com/v2/venues/${this.state.selectedPlace.venue}?client_id=EMSPZJIP3VLPKBSRBMBOMMDNMFV3VV04LH4QCDWICUNX5VJG&client_secret=4Q4MUBH5OKTC1TSLUXVX4ZZKF5KOS2HHUMJSJLFVEDOSXLBB&v=20130815&ll=34.883160,-82.355426&limit=1`)
-    .then( (response) => response.json())
-    .then(json => {
-        this.setState({
-            isLoaded: true,
-            data: json
+    .then( (response) => {
+        if (response.status !== 200) {
+            alert('error was found try again :(');
+            return;
+        }
+        response.json()
+        .then(json => {
+            this.setState({
+                isLoaded: true,
+                data: json
+            })
         })
-    })
+      }
+    )
+    .catch( err => { alert('error was found try again :('); })
 }
 
  render() {
