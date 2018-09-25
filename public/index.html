@@ -8,6 +8,7 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
+
     <title>Alex's Map</title>
   </head>
   <body>
@@ -15,8 +16,12 @@
     <div id="root"></div>
 
         <div id="container">
-            
+
         </div>
+
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3joGhgT9ytYxBXlPWetA-SR-jOctffv0&callback=loadMap" onerror="onError()"></script>
+        <script src="./src/MyMap.js"></script>
+
 
   </body>
 </html>

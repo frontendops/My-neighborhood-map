@@ -5,19 +5,15 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import './style.css';
 
 class MyMap extends Component {
+onError = () => {
+    return (<div>Map could not be loaded at time please try again</div>);
+}
 
-
-  render() {
-      /*my attempt at handling map error. if there is no google.maps
-      prop then it will return the first div if there is then the mapp will render
-      */
-    if (!this.props.google.maps) {
-        return (<div>Error please try loading the app again</div>)
-    } else {
+loadMap = () => {
     return (
         <div>
 
-       <Map google={this.props.google}
+       <Map google={window.google}
        onClick={this.onMapClicked}
         zoom={12}
         initialCenter={{
@@ -47,10 +43,16 @@ class MyMap extends Component {
       </div>
 
     );
-    }
-  }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyB3joGhgT9ytYxBXlPWetA-SR-jOctffv0")
-})(MyMap)
+  render() {
+
+    return (
+        <div>
+      {this.loadMap()}
+      </div>
+    );
+    }
+  }
+
+export default MyMap
