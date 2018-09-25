@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Map, Marker, GoogleApiWrapper,} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 
 import './style.css';
@@ -8,7 +8,12 @@ class MyMap extends Component {
 
 
   render() {
-
+      /*my attempt at handling map error. if there is no google.maps
+      prop then it will return the first div if there is then the mapp will render
+      */
+    if (!this.props.google.maps) {
+        return (<div>Error please try loading the app again</div>)
+    } else {
     return (
         <div>
 
@@ -42,6 +47,7 @@ class MyMap extends Component {
       </div>
 
     );
+    }
   }
 }
 
