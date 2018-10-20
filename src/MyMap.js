@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { Map, Marker} from 'google-maps-react';
 
 
 import './style.css';
 
 class MyMap extends Component {
 onError = () => {
-    return (<div>Map could not be loaded at time please try again</div>);
+    return (<div> could not be loaded at time please try again</div>);
 }
 
 loadMap = () => {
@@ -34,11 +34,7 @@ loadMap = () => {
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
             )}
-
-
       </Map>
-
-
 
       </div>
 
