@@ -7,7 +7,7 @@ import './style.css';
 class MyMap extends Component {
 
 
-  render() 
+  render() {
     if (!this.props.google.maps) {
         return (<div>Error please try loading the app again</div>)
     } else {
