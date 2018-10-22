@@ -3,7 +3,6 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 
 import './style.css';
-
 class MyMap extends Component {
 
 

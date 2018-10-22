@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import "./style.css";
 
-
+/*when map is loaded what is displayed are all of the markers when input gets
+changed it will only show the searched markers
+*/
 class SearchMap extends Component {
     state = {
         query: '',
         searchedMarkers: this.props.markers,
         select: this.props.selected
     }
-
+//when a user types into search field it saves the query
     updateInput = (query) => {
         this.setState({ query })
 
     }
-
+// filters marker to only display what is being searched for
     filterMarkers = (text) => {
         let filteredMarkers = this.props.markers.filter(marker =>
         marker.name.toLowerCase().includes(text.toLowerCase()));
@@ -25,6 +27,7 @@ class SearchMap extends Component {
 
 
   render() {
+//if the menu button has been clicked show the menu
     var visibility = "hide";
 
     if (this.props.menuVisibility) {
