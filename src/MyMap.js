@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-import { Map, Marker} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 
 import './style.css';
 
 class MyMap extends Component {
-onError = () => {
-    return (<div> could not be loaded at time please try again</div>);
-}
 
-loadMap = () => {
+
+  render() 
+    if (!this.props.google.maps) {
+        return (<div>Error please try loading the app again</div>)
+    } else {
     return (
         <div>
 
-       <Map google={window.google}
+       <Map google={this.props.google}
        onClick={this.onMapClicked}
         zoom={12}
         initialCenter={{
@@ -34,21 +35,19 @@ loadMap = () => {
                     position={{lat: `${marker.lat}`, lng: `${marker.long}`}} />
 
             )}
+
+
       </Map>
 
+
+
       </div>
 
-    );
-}
-
-  render() {
-
-    return (
-        <div>
-      {this.loadMap()}
-      </div>
     );
     }
   }
+}
 
-export default MyMap
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyB3joGhgT9ytYxBXlPWetA-SR-jOctffv0")
+})(MyMap)

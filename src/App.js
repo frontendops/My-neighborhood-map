@@ -102,6 +102,7 @@ class App extends Component {
       this.renderMarkerInfo = this.renderMarkerInfo.bind(this);
     }
 
+//when component loads all of the markers in default array are being sent to the empty markers array
     componentDidMount () {
             this.setState({
                 markers: [...this.state.defaultMarkers]
@@ -113,7 +114,6 @@ class App extends Component {
     handleMouseDown(e) {
     this.toggleMenu();
 
-    console.log("clicked");
     e.stopPropagation();
   }
 
@@ -131,6 +131,7 @@ class App extends Component {
         }))
     }
 //when a marker is clicked it fetches the data from foursquare api and displays
+//compares name of marker clicked to marker name
     onMarkerClick = (e) => {
         let selectedPlace = this.state.markers.find(marker =>
         marker.name === e.name)
