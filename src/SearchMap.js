@@ -46,7 +46,7 @@ class SearchMap extends Component {
           <span aria-hidden="true">&times;</span>
         </button>
 
-        <input className="search" type="text" aria-label="search-text" placeholder={"Search for any location"}
+        <input className="search" type="text" aria-label="search-text" placeholder={"Search for a marker"}
         value={this.state.query}
         onChange={(e) => {this.updateInput(e.target.value)
             this.filterMarkers(e.target.value)
